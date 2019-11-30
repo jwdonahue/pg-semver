@@ -1,0 +1,21 @@
+name: CI/CD
+on: [push]
+jobs:
+  test:
+    strategy:
+      matrix:
+        pg: [ 12, 11, 10, 9.6, 9.5, 9.4, 9.3, 9.2 ]
+    name: 🐘 ${{ matrix.pg }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setup Postgres
+        uses: harmon758/postgresql-action@v1
+        with:
+          postgresql version: ${{ matrix.pg }}
+      - name: Build and Test
+        run: |
+          psql --version
+          make
+          make install
+          make installcheck
