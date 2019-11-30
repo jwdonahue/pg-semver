@@ -13,8 +13,8 @@ jobs:
         run: |
           wget https://gist.githubusercontent.com/petere/5893799/raw/apt.postgresql.org.sh
           wget https://gist.githubusercontent.com/petere/6023944/raw/pg-travis-test.sh
-          sh ./apt.postgresql.org.sh
-          rm -vf /etc/apt/sources.list.d/pgdg-source.list
+          sudo sh ./apt.postgresql.org.sh
+          sudo rm -vf /etc/apt/sources.list.d/pgdg-source.list
 
       - name: Build and Test
         env:
